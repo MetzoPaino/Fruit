@@ -13,6 +13,8 @@
 		0A54FE31204F0F5700312D75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A54FE30204F0F5700312D75 /* Assets.xcassets */; };
 		0A54FE34204F0F5700312D75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A54FE32204F0F5700312D75 /* LaunchScreen.storyboard */; };
 		0A54FE3C204F162100312D75 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54FE3B204F162100312D75 /* Fruit.swift */; };
+		0A54FE3E204F1E0600312D75 /* FruitListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54FE3D204F1E0600312D75 /* FruitListTableViewController.swift */; };
+		0A54FE40204F1E1C00312D75 /* FruitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54FE3F204F1E1C00312D75 /* FruitDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0A54FE33204F0F5700312D75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A54FE35204F0F5700312D75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A54FE3B204F162100312D75 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		0A54FE3D204F1E0600312D75 /* FruitListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitListTableViewController.swift; sourceTree = "<group>"; };
+		0A54FE3F204F1E1C00312D75 /* FruitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				0A54FE29204F0F5700312D75 /* AppDelegate.swift */,
 				0A54FE2B204F0F5700312D75 /* ViewController.swift */,
+				0A54FE3D204F1E0600312D75 /* FruitListTableViewController.swift */,
+				0A54FE3F204F1E1C00312D75 /* FruitDetailsViewController.swift */,
 				0A54FE3B204F162100312D75 /* Fruit.swift */,
 				0A54FE2D204F0F5700312D75 /* Main.storyboard */,
 				0A54FE30204F0F5700312D75 /* Assets.xcassets */,
@@ -141,6 +147,8 @@
 			files = (
 				0A54FE3C204F162100312D75 /* Fruit.swift in Sources */,
 				0A54FE2C204F0F5700312D75 /* ViewController.swift in Sources */,
+				0A54FE40204F1E1C00312D75 /* FruitDetailsViewController.swift in Sources */,
+				0A54FE3E204F1E0600312D75 /* FruitListTableViewController.swift in Sources */,
 				0A54FE2A204F0F5700312D75 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
