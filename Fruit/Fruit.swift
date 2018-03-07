@@ -7,17 +7,36 @@
 //
 
 import UIKit
+import CoreData
 
-class Fruit: NSObject {
+//    var weight: Measurement<UnitMass> {
+//
+//        get {
+//            willAccessValue(forKey: "primativeWeight")
+//            defer { didAccessValue(forKey:"primativeWeight") }
+//
+//            let pounds = Measurement(value: Double(primativeWeight), unit: UnitMass.pounds)
+//
+//            let grams = pounds.converted(to: UnitMass.grams)
+//
+//            return grams
+//        }
+//        set {
+//            willChangeValue(forKey:"primativeWeight")
+//            defer { didChangeValue(forKey:"primativeWeight") }
+//
+//            let intValue = NSNumber(value: Int(newValue.value))
+//            primativeWeight = intValue.intValue
+//        }
+//    }
 
-    var price: String
-    var type: String
-    var weight: String
+class Fruit: NSManagedObject {
 
-    init?(type: String, price: String, weight: String) {
+    @NSManaged var price: Int
+    @NSManaged var type: String
+    @NSManaged var weight: Int
 
-        self.type = type
-        self.price = price
-        self.weight = weight
+    class func fetchRequest() -> NSFetchRequest<Fruit> {
+        return NSFetchRequest<Fruit>(entityName: "Fruit")
     }
 }
