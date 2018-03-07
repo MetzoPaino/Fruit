@@ -11,11 +11,29 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    let downloadManger = DownloadManager()
+    let coreDataManager = CoreDataManager()
 
+    var window: UIWindow?
+    lazy var coreDataStack = CoreDataStack(modelName: "FruitModel")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        coreDataManager.coreDataStack = coreDataStack
+
+        if coreDataManager.shouldDownloadData() {
+            downloadManger.downloadData(completionHandler: { data in
+                self.coreDataManager.writeData(data)
+            })
+        }
+
+        guard let navController = window?.rootViewController as? UINavigationController,
+            let viewController = navController.topViewController as? FruitListTableViewController else {
+                return true
+        }
+
+        viewController.coreDataStack = coreDataStack
+
         return true
     }
 
@@ -25,8 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        coreDataStack.saveContext()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -38,9 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        coreDataStack.saveContext()
     }
-
-
 }
 
