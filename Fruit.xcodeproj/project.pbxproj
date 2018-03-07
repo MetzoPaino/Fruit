@@ -19,6 +19,7 @@
 		0A54FE482050438F00312D75 /* FruitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A54FE452050425100312D75 /* FruitModel.xcdatamodeld */; };
 		0A54FE4A20504A1000312D75 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54FE4920504A1000312D75 /* CoreDataStack.swift */; };
 		0A54FE4C20506AE500312D75 /* FruitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A54FE4B20506AE500312D75 /* FruitTableViewCell.swift */; };
+		0A54FE4E20509C2E00312D75 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A54FE4D20509C2E00312D75 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0A54FE462050425100312D75 /* FruitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FruitModel.xcdatamodel; sourceTree = "<group>"; };
 		0A54FE4920504A1000312D75 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		0A54FE4B20506AE500312D75 /* FruitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitTableViewCell.swift; sourceTree = "<group>"; };
+		0A54FE4D20509C2E00312D75 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				0A54FE2D204F0F5700312D75 /* Main.storyboard */,
 				0A54FE30204F0F5700312D75 /* Assets.xcassets */,
 				0A54FE32204F0F5700312D75 /* LaunchScreen.storyboard */,
+				0A54FE4D20509C2E00312D75 /* Localizable.strings */,
 				0A54FE35204F0F5700312D75 /* Info.plist */,
 			);
 			path = Fruit;
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A54FE34204F0F5700312D75 /* LaunchScreen.storyboard in Resources */,
+				0A54FE4E20509C2E00312D75 /* Localizable.strings in Resources */,
 				0A54FE31204F0F5700312D75 /* Assets.xcassets in Resources */,
 				0A54FE2F204F0F5700312D75 /* Main.storyboard in Resources */,
 			);
