@@ -11,7 +11,7 @@ import UIKit
 class FruitTableViewCell: UITableViewCell {
 
     //MARK: - IBOutlets
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private var nameLabel: UILabel!
 
     //MARK: - Setup
     func setup(fruit:Fruit) {

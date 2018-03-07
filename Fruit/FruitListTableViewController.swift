@@ -32,6 +32,9 @@ class FruitListTableViewController: UITableViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = NSLocalizedString("FruitListTableViewControllerTitle", comment: "")
+
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -68,15 +71,23 @@ class FruitListTableViewController: UITableViewController  {
         return cell
     }
 
-    /*
-    // MARK: - Navigation
+    // MARK: - Table view delegate
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "PushFruitDetail", sender: self)
     }
-    */
+
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? FruitDetailsViewController {
+
+            if let indexPath = tableView.indexPathForSelectedRow {
+                controller.fruit = fetchedResultsController.object(at: indexPath)
+            } else {
+                controller.fruit = Fruit()
+            }
+        }
+    }
 
 }
 

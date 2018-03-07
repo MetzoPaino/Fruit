@@ -26,7 +26,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPa-pD-mgP">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPa-pD-mgP">
                                             <rect key="frame" x="20" y="20" width="335" height="42.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                             <nil key="textColor"/>
@@ -52,7 +52,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="PlA-e0-Xot"/>
                     <connections>
-                        <segue destination="xvL-Tq-Qo8" kind="show" id="bDU-HJ-Xas"/>
+                        <segue destination="xvL-Tq-Qo8" kind="show" identifier="PushFruitDetail" id="bDU-HJ-Xas"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KCS-A9-JFu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -66,9 +66,37 @@
                     <view key="view" contentMode="scaleToFill" id="OCY-8r-YtO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5aq-8f-KOf">
+                                <rect key="frame" x="20" y="84" width="335" height="61"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8h-WC-C3C">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Qp-5E-7iv">
+                                        <rect key="frame" x="0.0" y="40.5" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5aq-8f-KOf" firstAttribute="top" secondItem="hkd-XD-TZI" secondAttribute="top" constant="20" id="E25-ZX-wnc"/>
+                            <constraint firstItem="5aq-8f-KOf" firstAttribute="leading" secondItem="hkd-XD-TZI" secondAttribute="leading" constant="20" id="Ik7-D5-0Kg"/>
+                            <constraint firstItem="hkd-XD-TZI" firstAttribute="trailing" secondItem="5aq-8f-KOf" secondAttribute="trailing" constant="20" id="jW4-xx-pag"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hkd-XD-TZI"/>
                     </view>
+                    <connections>
+                        <outlet property="priceLabel" destination="6Qp-5E-7iv" id="JGa-eb-3FK"/>
+                        <outlet property="weightLabel" destination="m8h-WC-C3C" id="0xD-wV-gFI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hkF-Hf-ahF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
