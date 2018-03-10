@@ -14,14 +14,14 @@ enum DownloadManagerError: Error {
     case unknownError
 }
 
-class DownloadManager {
+class NetworkManager {
 
     var defaultSession = URLSession.shared
     var dataTask = URLSessionDataTask()
 
     func downloadData(completionHandler: @escaping ([[String: Any]]?, Error?) -> Void) {
 
-        let dataEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
+        let dataEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json#"
 
         guard let url = try? createURL(string: dataEndpoint) else {
             // NO NO NO
