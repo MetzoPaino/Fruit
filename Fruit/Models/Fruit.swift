@@ -16,11 +16,16 @@ enum FruitError: Error {
 
 class Fruit: NSManagedObject {
 
+    /// The price of the fruit in pennies for GBP
     @NSManaged var price: Int
+
+    /// The name of the fruit
     @NSManaged var type: String
+
+    /// The weight of the fruit in pounds
     @NSManaged var weight: Int
 
-    let fruitEntityName: NSString = "Fruit"
+//    let fruitEntityName: NSString = "Fruit"
 
     class func fetchRequest() -> NSFetchRequest<Fruit> {
         return NSFetchRequest<Fruit>(entityName: "Fruit")
@@ -29,6 +34,21 @@ class Fruit: NSManagedObject {
 
 extension Fruit {
 
+    /**
+     Sets the variables of Fruit from a Dictionary
+
+     - Parameters:
+     - Dictionary: Dictionary created from API JSON
+
+     ```
+     // Dictionary example:
+     let dictionary = [
+        "type": "Orange",
+        "weight": 100,
+        "price": 30
+     ]
+     ```
+     */
     func dictionaryToFruit(dictonary: Dictionary<String, Any>) throws {
 
         if

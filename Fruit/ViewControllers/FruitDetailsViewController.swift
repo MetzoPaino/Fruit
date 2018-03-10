@@ -24,7 +24,6 @@ class FruitDetailsViewController: UIViewController {
 
         let pounds = Measurement(value: Double(fruit.weight), unit: UnitMass.pounds)
         let kilograms = pounds.converted(to: UnitMass.kilograms)
-        
         let formatter = MeasurementFormatter()
         formatter.unitOptions = .naturalScale
         formatter.locale = Locale(identifier: "en_gb")
