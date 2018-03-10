@@ -16,6 +16,8 @@ class FruitListPresenter: NSObject {
     private var fruitListView : FruitListView?
     private var fetchedResultsController: NSFetchedResultsController<Fruit>!
 
+    //MARK: - Life Cycle
+
     override init() {
         super.init()
         fetchedResultsController = AppManager.sharedInstance.fetchedResultsController()

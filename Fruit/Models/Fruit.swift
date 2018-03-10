@@ -25,8 +25,6 @@ class Fruit: NSManagedObject {
     /// The weight of the fruit in pounds
     @NSManaged var weight: Int
 
-//    let fruitEntityName: NSString = "Fruit"
-
     class func fetchRequest() -> NSFetchRequest<Fruit> {
         return NSFetchRequest<Fruit>(entityName: "Fruit")
     }

@@ -10,6 +10,4 @@ import UIKit
 
 protocol FruitListView {
     func updateFruits(fruits: [Fruit]?)
-    func beginUpdates()
-    func endUpdates()
 }

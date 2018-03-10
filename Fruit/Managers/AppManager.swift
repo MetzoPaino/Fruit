@@ -11,8 +11,9 @@ import CoreData
 
 class AppManager {
 
-    private let downloadManger = DownloadManager()
+    private let networkManger = NetworkManager()
     private let coreDataManager = CoreDataManager()
+    private let analyticsManager = AnalyticsManager()
 
     struct Static {
         static var instance: AppManager?
@@ -49,6 +50,9 @@ class AppManager {
             }
         })
     }
+
+    // MARK:- Analytics
+    // MARK:- Core Data
 
     func fetchedResultsController() ->  NSFetchedResultsController<Fruit> {
         return coreDataManager.fetchedResultsController
