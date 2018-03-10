@@ -20,7 +20,7 @@ class FruitDetailsViewController: UIViewController {
     var fruit: Fruit!
     private var presenter = FruitDetailPresenter()
 
-    var weightString: String {
+    private var weightString: String {
 
         let pounds = Measurement(value: Double(fruit.weight), unit: UnitMass.pounds)
         let kilograms = pounds.converted(to: UnitMass.kilograms)
@@ -31,7 +31,7 @@ class FruitDetailsViewController: UIViewController {
         return formatter.string(from: kilograms)
     }
 
-    var priceString: String {
+    private var priceString: String {
 
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
@@ -61,3 +61,5 @@ class FruitDetailsViewController: UIViewController {
         priceLabel.text = NSLocalizedString("FruitDetailsPrice", comment: "") + " " + "\(priceString)"
     }
 }
+
+extension FruitDetailsViewController: FruitDetailView {}

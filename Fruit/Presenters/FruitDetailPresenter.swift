@@ -12,7 +12,7 @@ class FruitDetailPresenter {
 
     private var fruitDetailView : FruitDetailView?
 
-    func attachView(view: FruitDetailView) {
+    func attachView(_ view: FruitDetailView) {
         fruitDetailView = view
     }
 }
