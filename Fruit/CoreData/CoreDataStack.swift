@@ -38,6 +38,7 @@ class CoreDataStack {
         guard managedContext.hasChanges else { return }
 
         do {
+            print("Performing save of data")
             try managedContext.save()
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")
