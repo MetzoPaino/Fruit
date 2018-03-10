@@ -50,7 +50,13 @@
                             <outlet property="delegate" destination="qIj-fL-W0M" id="ePI-GH-1EN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="PlA-e0-Xot"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="PlA-e0-Xot">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="gFT-Z0-A9C">
+                            <connections>
+                                <action selector="refreshButtonPressed:" destination="qIj-fL-W0M" id="YBo-d0-pGN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="xvL-Tq-Qo8" kind="show" identifier="PushFruitDetail" id="bDU-HJ-Xas"/>
                     </connections>
