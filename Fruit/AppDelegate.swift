@@ -11,28 +11,11 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let downloadManger = DownloadManager()
-    let coreDataManager = CoreDataManager()
-
     var window: UIWindow?
-    lazy var coreDataStack = CoreDataStack(modelName: "FruitModel")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        coreDataManager.coreDataStack = coreDataStack
-
-        if coreDataManager.shouldDownloadData() {
-            downloadManger.downloadData(completionHandler: { data in
-                self.coreDataManager.writeData(data)
-            })
-        }
-
-        guard let navController = window?.rootViewController as? UINavigationController,
-            let viewController = navController.topViewController as? FruitListTableViewController else {
-                return true
-        }
-
-        viewController.coreDataStack = coreDataStack
+        AppManager.sharedInstance.downloadData(forced: false)
 
         return true
     }
@@ -43,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        coreDataStack.saveContext()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -55,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        coreDataStack.saveContext()
     }
 }
 
