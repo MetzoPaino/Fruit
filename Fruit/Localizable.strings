@@ -7,3 +7,5 @@
 */
 
 "FruitListTableViewControllerTitle" = "Fruits";
+"FruitDetailsWeight" = "Weight: ";
+"FruitDetailsPrice" = "Price:";
