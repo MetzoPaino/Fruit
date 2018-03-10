@@ -19,7 +19,7 @@ class NetworkManager {
     var defaultSession = URLSession.shared
     var dataTask = URLSessionDataTask()
 
-    func downloadData(completionHandler: @escaping ([[String: Any]]?, Error?) -> Void) {
+    func downloadData(completionHandler: @escaping ([[String: Any]]?, TimeInterval?, Error?) -> Void) {
 
         let dataEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json#"
 
@@ -31,7 +31,7 @@ class NetworkManager {
         dataTask = defaultSession.dataTask(with: url) { data, response, error in
 
             if let error = error {
-                completionHandler(nil, error)
+                completionHandler(nil, nil, error)
             } else if
                 let data = data,
                 let response = response as? HTTPURLResponse,
@@ -42,12 +42,15 @@ class NetworkManager {
                 DispatchQueue.main.async {
 
                     print("\n time interval\n\n")
-                    self.postEventLoading(string: self.createLoadingEvent(timeTaken: Date().timeIntervalSince(date)))
+//                    self.postEventLoading(string: self.createLoadingEvent(timeTaken: Date().timeIntervalSince(date)))
+
 
                     do {
                          let json = try parseJSON(data: data)
-                        completionHandler(json, nil)
-                    } catch {}
+                        completionHandler(json, Date().timeIntervalSince(date), nil)
+                    } catch {
+                        //Handle time taken
+                    }
                 }
             }
         }
@@ -68,7 +71,7 @@ class NetworkManager {
         return analyticsEndpoint + analyticsEvent
     }
 
-    func postEventLoading(string: String) {
+    func postAnalytic(string: String) {
 
         guard let url = try? createURL(string: string) else {
             // NO NO NO

@@ -18,6 +18,7 @@ class FruitListTableViewController: UITableViewController  {
     private let cellIdentifier = "Cell"
     private let pushSegueIdentifier = "PushFruitDetail"
 
+    private var analyticDate: Date?
 
     //MARK: - Life cycle
 
@@ -27,6 +28,19 @@ class FruitListTableViewController: UITableViewController  {
         presenter.performFetch()
 
         title = NSLocalizedString("FruitListTableViewControllerTitle", comment: "")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        analyticDate = Date()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let analyticDate = analyticDate {
+            presenter.sendDisplayTimeAnalytic(timeTaken: Date().timeIntervalSince(analyticDate))
+            self.analyticDate = nil
+        }
     }
 
     // MARK: - IBActions
@@ -83,59 +97,4 @@ extension FruitListTableViewController: FruitListView {
         }
         tableView.reloadData()
     }
-
-    func beginUpdates() {
-        print("FruitListTableViewController: beginUpdates")
-//        tableView.beginUpdates()
-    }
-
-    func endUpdates() {
-        print("FruitListTableViewController: endUpdates")
-//        tableView.endUpdates()
-    }
 }
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-//extension FruitListTableViewController: NSFetchedResultsControllerDelegate {
-//
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.beginUpdates()
-//    }
-//
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.endUpdates()
-//    }
-//
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//        switch (type) {
-//        case .insert:
-//            if let indexPath = newIndexPath {
-//                tableView.insertRows(at: [indexPath], with: .automatic)
-//            }
-//            break;
-//        case .delete:
-//            if let indexPath = indexPath {
-//                tableView.deleteRows(at: [indexPath], with: .automatic)
-//            }
-//            break;
-//        case .update:
-//            if
-//                let indexPath = indexPath,
-//                let cell = tableView.cellForRow(at: indexPath) as? FruitTableViewCell {
-//                    let fruit = fetchedResultsController.object(at: indexPath)
-//                    cell.setup(fruit: fruit)
-//            }
-//            break;
-//        case .move:
-//            if let indexPath = indexPath {
-//                tableView.deleteRows(at: [indexPath], with: .automatic)
-//            }
-//
-//            if let newIndexPath = newIndexPath {
-//                tableView.insertRows(at: [newIndexPath], with: .automatic)
-//            }
-//            break;
-//        }
-//    }
-//}

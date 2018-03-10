@@ -41,27 +41,17 @@ class FruitListPresenter: NSObject {
 
     func refreshList() {
         AppManager.sharedInstance.downloadData(forced: true)
-        
     }
+
+    func sendDisplayTimeAnalytic(timeTaken: TimeInterval) {
+        AppManager.sharedInstance.sendAnalyticDisplayEvent(timeTaken: timeTaken)
+    }
+
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
 
 extension FruitListPresenter: NSFetchedResultsControllerDelegate {
-
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-
-        print("controllerWillChangeContent")
-        // TODO: - Test this, can i update the data model before begin updates?
-        fruitListView?.updateFruits(fruits: fetchedResultsController.fetchedObjects)
-        fruitListView?.beginUpdates()
-    }
-
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        // TODO: - Test this
-        print("controllerDidChangeContent")
-        fruitListView?.endUpdates()
-    }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         print("controller didChange anObject at indexPath")

@@ -35,7 +35,11 @@ class AppManager {
             return
         }
 
-        downloadManger.downloadData(completionHandler: { data, error in
+        networkManger.downloadData(completionHandler: { data, timeTaken, error in
+
+            if let timeTaken = timeTaken {
+                self.sendAnalyticDownloadEvent(timeTaken: timeTaken)
+            }
 
             if let data = data {
 
@@ -52,6 +56,15 @@ class AppManager {
     }
 
     // MARK:- Analytics
+
+    func sendAnalyticDownloadEvent(timeTaken: TimeInterval) {
+        networkManger.postAnalytic(string: analyticsManager.downloadEvent(timeTaken: timeTaken))
+    }
+
+    func sendAnalyticDisplayEvent(timeTaken: TimeInterval) {
+        networkManger.postAnalytic(string: analyticsManager.displayEvent(timeTaken: timeTaken))
+    }
+
     // MARK:- Core Data
 
     func fetchedResultsController() ->  NSFetchedResultsController<Fruit> {

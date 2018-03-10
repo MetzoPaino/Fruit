@@ -15,4 +15,8 @@ class FruitDetailPresenter {
     func attachView(_ view: FruitDetailView) {
         fruitDetailView = view
     }
+
+    func sendDisplayTimeAnalytic(timeTaken: TimeInterval) {
+        AppManager.sharedInstance.sendAnalyticDisplayEvent(timeTaken: timeTaken)
+    }
 }
