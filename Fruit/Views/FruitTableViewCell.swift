@@ -18,6 +18,11 @@ class FruitTableViewCell: UITableViewCell {
 
     func setup(fruit:Fruit) {
 
-        nameLabel.text = fruit.type.capitalized
+        var name = fruit.type.capitalized
+
+        if let emoji = emojiDictionary[fruit.type.lowercased()] {
+            name += " " + emoji
+        }
+        nameLabel.text = name
     }
 }
