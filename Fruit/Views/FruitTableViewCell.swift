@@ -11,9 +11,11 @@ import UIKit
 class FruitTableViewCell: UITableViewCell {
 
     //MARK: - IBOutlets
+    
     @IBOutlet private var nameLabel: UILabel!
 
     //MARK: - Setup
+
     func setup(fruit:Fruit) {
 
         nameLabel.text = fruit.type.capitalized
