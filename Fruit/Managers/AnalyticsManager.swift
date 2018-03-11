@@ -39,7 +39,7 @@ class AnalyticsManager {
 
         var urlComponents = createURLComponents()
         let queryItem = AnalyticEvent.download.queryItem
-        let queryData = URLQueryItem(name: "event", value: "\(timeTaken)")
+        let queryData = URLQueryItem(name: "event", value: "\(timeTaken.milliseconds())")
         urlComponents.queryItems = [queryItem, queryData]
 
         return urlComponents.string
@@ -49,7 +49,7 @@ class AnalyticsManager {
 
         var urlComponents = createURLComponents()
         let queryItem = AnalyticEvent.displayTime.queryItem
-        let queryData = URLQueryItem(name: "event", value: "\(timeTaken)")
+        let queryData = URLQueryItem(name: "event", value: "\(timeTaken.milliseconds())")
         urlComponents.queryItems = [queryItem, queryData]
 
         return urlComponents.string

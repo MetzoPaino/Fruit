@@ -31,6 +31,7 @@
 		0A60895A205464B700806AFC /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608959205464B700806AFC /* AnalyticsManager.swift */; };
 		0A60895C205468E700806AFC /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60895B205468E700806AFC /* NetworkManagerTests.swift */; };
 		0A60895E2054910C00806AFC /* EmojiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60895D2054910C00806AFC /* EmojiHelper.swift */; };
+		0A6089602055620500806AFC /* TimeIntervalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60895F2055620500806AFC /* TimeIntervalHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		0A608959205464B700806AFC /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		0A60895B205468E700806AFC /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		0A60895D2054910C00806AFC /* EmojiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiHelper.swift; sourceTree = "<group>"; };
+		0A60895F2055620500806AFC /* TimeIntervalHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				0A60894D205417E000806AFC /* JSONHelper.swift */,
 				0A60895D2054910C00806AFC /* EmojiHelper.swift */,
+				0A60895F2055620500806AFC /* TimeIntervalHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A54FE3C204F162100312D75 /* Fruit.swift in Sources */,
+				0A6089602055620500806AFC /* TimeIntervalHelper.swift in Sources */,
 				0A60893E2051E4BF00806AFC /* AppManager.swift in Sources */,
 				0A54FE4220502A0B00312D75 /* NetworkManager.swift in Sources */,
 				0A54FE4C20506AE500312D75 /* FruitTableViewCell.swift in Sources */,

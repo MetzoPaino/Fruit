@@ -17,6 +17,8 @@ class FruitDetailsViewController: UIViewController {
 
     //MARK: - Variables
 
+    private let britishLocale = Locale(identifier: "en_gb")
+
     var fruit: Fruit!
     private var presenter = FruitDetailsPresenter()
 
@@ -26,7 +28,7 @@ class FruitDetailsViewController: UIViewController {
         let kilograms = pounds.converted(to: UnitMass.kilograms)
         let formatter = MeasurementFormatter()
         formatter.unitOptions = .naturalScale
-        formatter.locale = Locale(identifier: "en_gb")
+        formatter.locale = britishLocale
         return formatter.string(from: kilograms)
     }
 
@@ -35,7 +37,7 @@ class FruitDetailsViewController: UIViewController {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = .currency
-        currencyFormatter.locale = Locale(identifier: "en_gb")
+        currencyFormatter.locale = britishLocale
         let pennies = Double(fruit.price) / 100
 
         if let string = currencyFormatter.string(from: NSNumber(value: pennies)) {
