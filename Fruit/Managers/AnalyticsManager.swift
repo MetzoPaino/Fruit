@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 /**
  Possible analytic events.
@@ -21,16 +22,18 @@ enum AnalyticEvent {
     case error
 
     var queryItem: URLQueryItem {
-        let item = "event"
+        let queryName = "event"
         switch self {
-        case .load: return URLQueryItem(name: item, value: "load")
-        case .display: return URLQueryItem(name: item, value: "display")
-        case .error: return URLQueryItem(name: item, value: "error")
+        case .load: return URLQueryItem(name: queryName, value: "load")
+        case .display: return URLQueryItem(name: queryName, value: "display")
+        case .error: return URLQueryItem(name: queryName, value: "error")
         }
     }
 }
 
 class AnalyticsManager {
+
+    private let queryName = "event"
 
     /**
      Creates a new URLComponents object for constructing analytic URLs
@@ -51,14 +54,14 @@ class AnalyticsManager {
         - timeTaken: Length of time of the download event
      - Returns: A fully constructed url string for sending a load event
      */
-    func loadEvent(timeTaken: TimeInterval) -> String? {
+    func loadEvent(timeTaken: TimeInterval) -> URLComponents {
 
         var urlComponents = createURLComponents()
         let queryItem = AnalyticEvent.load.queryItem
-        let queryData = URLQueryItem(name: "event", value: "\(timeTaken.milliseconds())")
+        let queryData = URLQueryItem(name: queryName, value: "\(timeTaken.milliseconds())")
         urlComponents.queryItems = [queryItem, queryData]
 
-        return urlComponents.string
+        return urlComponents
     }
 
     /**
@@ -67,14 +70,14 @@ class AnalyticsManager {
         - timeTaken: Length of time of the display event
      - Returns: A fully constructed url string for sending a display event
      */
-    func displayEvent(timeTaken: TimeInterval) -> String? {
+    func displayEvent(timeTaken: TimeInterval) -> URLComponents {
 
         var urlComponents = createURLComponents()
         let queryItem = AnalyticEvent.display.queryItem
-        let queryData = URLQueryItem(name: "event", value: "\(timeTaken.milliseconds())")
+        let queryData = URLQueryItem(name: queryName, value: "\(timeTaken.milliseconds())")
         urlComponents.queryItems = [queryItem, queryData]
 
-        return urlComponents.string
+        return urlComponents
     }
 
     /**
@@ -84,7 +87,7 @@ class AnalyticsManager {
      - Note: Will attempt to use an exception's name, reason and stack trace for url
      - Returns: A fully constructed url string for sending an error event.
      */
-    func errorEvent(exception: NSException) -> String? {
+    func errorEvent(exception: NSException) -> URLComponents {
 
         let newLine = "\n" // urlComponents won't parse %0A correctly
 
@@ -113,9 +116,19 @@ class AnalyticsManager {
 
         var urlComponents = createURLComponents()
         let queryItem = AnalyticEvent.error.queryItem
-        let queryData = URLQueryItem(name: "event", value: dataString)
+        let queryData = URLQueryItem(name: queryName, value: dataString)
         urlComponents.queryItems = [queryItem, queryData]
 
-        return urlComponents.string
+        return urlComponents
+    }
+
+    func logIssue(message: String) {
+
+        guard let bundleID = Bundle.main.bundleIdentifier else {
+            return
+        }
+
+        let osLog = OSLog(subsystem: bundleID, category: "Model")
+        os_log("Error:", log: osLog, type: .error, message)
     }
 }

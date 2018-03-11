@@ -24,7 +24,6 @@
 		0A60893E2051E4BF00806AFC /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60893D2051E4BF00806AFC /* AppManager.swift */; };
 		0A6089442053F77500806AFC /* FruitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6089432053F77500806AFC /* FruitListView.swift */; };
 		0A608948205412E800806AFC /* FruitListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608947205412E800806AFC /* FruitListPresenter.swift */; };
-		0A60894A205413AF00806AFC /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608949205413AF00806AFC /* CoreDataManagerTests.swift */; };
 		0A60894E205417E000806AFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60894D205417E000806AFC /* JSONHelper.swift */; };
 		0A6089562054574100806AFC /* FruitDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6089552054574100806AFC /* FruitDetailsPresenter.swift */; };
 		0A608958205457A700806AFC /* FruitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608957205457A700806AFC /* FruitDetailsView.swift */; };
@@ -66,7 +65,6 @@
 		0A60893D2051E4BF00806AFC /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		0A6089432053F77500806AFC /* FruitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitListView.swift; sourceTree = "<group>"; };
 		0A608947205412E800806AFC /* FruitListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FruitListPresenter.swift; sourceTree = "<group>"; };
-		0A608949205413AF00806AFC /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		0A60894D205417E000806AFC /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		0A6089552054574100806AFC /* FruitDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailsPresenter.swift; sourceTree = "<group>"; };
 		0A608957205457A700806AFC /* FruitDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailsView.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 			children = (
 				0A6089352051C28000806AFC /* FruitTests.swift */,
 				0A60895B205468E700806AFC /* NetworkManagerTests.swift */,
-				0A608949205413AF00806AFC /* CoreDataManagerTests.swift */,
 				0A6089372051C28000806AFC /* Info.plist */,
 			);
 			path = FruitTests;
@@ -347,7 +344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A60895C205468E700806AFC /* NetworkManagerTests.swift in Sources */,
-				0A60894A205413AF00806AFC /* CoreDataManagerTests.swift in Sources */,
 				0A6089362051C28000806AFC /* FruitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

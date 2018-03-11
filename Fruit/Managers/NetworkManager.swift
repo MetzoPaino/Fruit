@@ -11,6 +11,7 @@ import UIKit
 enum DownloadManagerError: Error {
     case jsonParser
     case urlResolveFailure
+    case invalidResponse
     case unknownError
 }
 
@@ -21,10 +22,13 @@ class NetworkManager {
 
     func downloadData(completionHandler: @escaping ([[String: Any]]?, TimeInterval?, Error?) -> Void) {
 
-        let dataEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json#"
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "raw.githubusercontent.com"
+        urlComponents.path = "/fmtvp/recruit-test-data/master/data.json"
 
         do {
-            let url = try createURL(string: dataEndpoint)
+            let url = try createURL(urlComponents: urlComponents)
             dataTask = defaultSession.dataTask(with: url) { data, response, error in
 
                 if let error = error {
@@ -45,6 +49,8 @@ class NetworkManager {
                             completionHandler(nil, Date().timeIntervalSince(date), error)
                         }
                     }
+                } else {
+                    completionHandler(nil, nil, DownloadManagerError.invalidResponse)
                 }
             }
             dataTask.resume()
@@ -55,23 +61,9 @@ class NetworkManager {
         }
     }
 
-    func createLoadingEvent(timeTaken: TimeInterval) -> String {
-
-        let analyticsEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats?"
-        let analyticsEvent = "event=load&data=\(timeTaken)"
-        return analyticsEndpoint + analyticsEvent
-    }
-
-    func createDisplayEvent(timeTaken: TimeInterval) -> String {
-
-        let analyticsEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats?"
-        let analyticsEvent = "event=display&data=\(timeTaken)"
-        return analyticsEndpoint + analyticsEvent
-    }
-
-    func postAnalytic(string: String?) {
+    func postAnalytic(urlComponents: URLComponents) {
         do {
-            let url = try createURL(string: string)
+            let url = try createURL(urlComponents: urlComponents)
             dataTask = defaultSession.dataTask(with: url, completionHandler: { (data, response, error) in
 
                 if let error = error {
@@ -90,18 +82,15 @@ class NetworkManager {
             })
             dataTask.resume()
         } catch {
-//            completionHandler(nil, nil, error)
             return
         }
     }
 
-    func createURL(string: String?) throws -> URL {
+    func createURL(urlComponents: URLComponents) throws -> URL {
 
-        guard
-            let urlComponents = URLComponents(string: string!),
-            let url = urlComponents.url else {
-                print("The URL failed to resolve")
-                throw DownloadManagerError.urlResolveFailure
+        guard let url = urlComponents.url else {
+            print("The URL failed to resolve")
+            throw DownloadManagerError.urlResolveFailure
         }
         return url
     }

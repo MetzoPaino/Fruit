@@ -21,6 +21,7 @@ class FruitDetailsViewController: UIViewController {
 
     var fruit: Fruit!
     private var presenter = FruitDetailsPresenter()
+    private var analyticDate: Date?
 
     private var weightString: String {
 
@@ -52,6 +53,19 @@ class FruitDetailsViewController: UIViewController {
         super.viewDidLoad()
         presenter.attachView(self)
         style()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        analyticDate = Date()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let analyticDate = analyticDate {
+            presenter.sendDisplayTimeAnalytic(timeTaken: Date().timeIntervalSince(analyticDate))
+            self.analyticDate = nil
+        }
     }
 
     //MARK: - Style

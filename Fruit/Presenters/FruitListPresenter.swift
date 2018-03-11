@@ -53,7 +53,6 @@ class FruitListPresenter: NSObject {
 extension FruitListPresenter: NSFetchedResultsControllerDelegate {
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        print("controller didChange anObject at indexPath")
         fruitListView?.updateFruits(fruits: fetchedResultsController.fetchedObjects)
     }
 }

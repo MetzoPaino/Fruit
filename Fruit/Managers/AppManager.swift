@@ -45,16 +45,18 @@ class AppManager {
                 self.sendAnalyticLoadEvent(timeTaken: timeTaken)
             }
 
-            if let data = data {
+            if let error = error {
+                print("Failed to download data \(error)")
+            }
 
-                do {
-                    try self.coreDataManager.save(fruitArray: data)
-                } catch {
-                    print("Failed to save!")
-                }
+            guard let data = data else {
+                return
+            }
 
-            } else {
-                print("No Data!")
+            do {
+                try self.coreDataManager.save(fruitArray: data)
+            } catch {
+                print("Failed to save data")
             }
         })
     }
@@ -62,15 +64,15 @@ class AppManager {
     // MARK:- Analytics
 
     func sendAnalyticLoadEvent(timeTaken: TimeInterval) {
-        networkManger.postAnalytic(string: analyticsManager.loadEvent(timeTaken: timeTaken))
+        networkManger.postAnalytic(urlComponents: analyticsManager.loadEvent(timeTaken: timeTaken))
     }
 
     func sendAnalyticDisplayEvent(timeTaken: TimeInterval) {
-        networkManger.postAnalytic(string: analyticsManager.displayEvent(timeTaken: timeTaken))
+        networkManger.postAnalytic(urlComponents: analyticsManager.displayEvent(timeTaken: timeTaken))
     }
 
     func sendAnalyticErrorEvent(exception: NSException) {
-        networkManger.postAnalytic(string: analyticsManager.errorEvent(exception: exception))
+        networkManger.postAnalytic(urlComponents: analyticsManager.errorEvent(exception: exception))
     }
 
     // MARK:- Core Data

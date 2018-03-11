@@ -90,8 +90,6 @@ class FruitListTableViewController: UITableViewController  {
 extension FruitListTableViewController: FruitListView {
 
     func updateFruits(fruits: [Fruit]?) {
-
-        print("FruitListTableViewController: updateFruits")
         if let fruits = fruits {
             self.fruits = fruits
         }
