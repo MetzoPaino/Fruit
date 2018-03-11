@@ -11,6 +11,8 @@ import CoreData
 
 class AppManager {
 
+    // MARK:- Variables
+
     private let networkManger = NetworkManager()
     private let coreDataManager = CoreDataManager()
     private let analyticsManager = AnalyticsManager()
@@ -27,6 +29,8 @@ class AppManager {
         return Static.instance!
     }
 
+    // MARK:- Network Manager
+
     func downloadData(forced: Bool) {
 
         if forced {
@@ -38,7 +42,7 @@ class AppManager {
         networkManger.downloadData(completionHandler: { data, timeTaken, error in
 
             if let timeTaken = timeTaken {
-                self.sendAnalyticDownloadEvent(timeTaken: timeTaken)
+                self.sendAnalyticLoadEvent(timeTaken: timeTaken)
             }
 
             if let data = data {
@@ -57,8 +61,8 @@ class AppManager {
 
     // MARK:- Analytics
 
-    func sendAnalyticDownloadEvent(timeTaken: TimeInterval) {
-        networkManger.postAnalytic(string: analyticsManager.downloadEvent(timeTaken: timeTaken))
+    func sendAnalyticLoadEvent(timeTaken: TimeInterval) {
+        networkManger.postAnalytic(string: analyticsManager.loadEvent(timeTaken: timeTaken))
     }
 
     func sendAnalyticDisplayEvent(timeTaken: TimeInterval) {

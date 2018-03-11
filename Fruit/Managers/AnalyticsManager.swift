@@ -8,16 +8,23 @@
 
 import Foundation
 
+/**
+ Possible analytic events.
+
+ - Download: Any network request
+ - Display: The time it takes from user request to rendering a view.
+ - Error: A raised exception or application crash.
+ */
 enum AnalyticEvent {
-    case download
-    case displayTime
+    case load
+    case display
     case error
 
     var queryItem: URLQueryItem {
         let item = "event"
         switch self {
-        case .download: return URLQueryItem(name: item, value: "load")
-        case .displayTime: return URLQueryItem(name: item, value: "display")
+        case .load: return URLQueryItem(name: item, value: "load")
+        case .display: return URLQueryItem(name: item, value: "display")
         case .error: return URLQueryItem(name: item, value: "error")
         }
     }
@@ -25,8 +32,11 @@ enum AnalyticEvent {
 
 class AnalyticsManager {
 
-    private let analyticsEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats?"
-
+    /**
+     Creates a new URLComponents object for constructing analytic URLs
+     - Note: This includes the scheme, host and path
+     - Returns: A new URLComponents object pointing towards the analytics endpoint
+     */
     func createURLComponents() -> URLComponents {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -35,29 +45,48 @@ class AnalyticsManager {
         return urlComponents
     }
 
-    func downloadEvent(timeTaken: TimeInterval) -> String? {
+    /**
+     Creates a string for a load event using a TimeInterval object
+     - Parameters:
+        - timeTaken: Length of time of the download event
+     - Returns: A fully constructed url string for sending a load event
+     */
+    func loadEvent(timeTaken: TimeInterval) -> String? {
 
         var urlComponents = createURLComponents()
-        let queryItem = AnalyticEvent.download.queryItem
+        let queryItem = AnalyticEvent.load.queryItem
         let queryData = URLQueryItem(name: "event", value: "\(timeTaken.milliseconds())")
         urlComponents.queryItems = [queryItem, queryData]
 
         return urlComponents.string
     }
 
+    /**
+     Creates a string for a display event using a TimeInterval object
+     - Parameters:
+        - timeTaken: Length of time of the display event
+     - Returns: A fully constructed url string for sending a display event
+     */
     func displayEvent(timeTaken: TimeInterval) -> String? {
 
         var urlComponents = createURLComponents()
-        let queryItem = AnalyticEvent.displayTime.queryItem
+        let queryItem = AnalyticEvent.display.queryItem
         let queryData = URLQueryItem(name: "event", value: "\(timeTaken.milliseconds())")
         urlComponents.queryItems = [queryItem, queryData]
 
         return urlComponents.string
     }
 
+    /**
+     Creates a string for an error event using an NSException object.
+     - Parameters:
+        - exception: The exception thrown.
+     - Note: Will attempt to use an exception's name, reason and stack trace for url
+     - Returns: A fully constructed url string for sending an error event.
+     */
     func errorEvent(exception: NSException) -> String? {
 
-        let newLine = "\n" // addingPercentEncoding below won't parse %0A correctly
+        let newLine = "\n" // urlComponents won't parse %0A correctly
 
         var dataString = exception.name.rawValue
         dataString.append(newLine)
