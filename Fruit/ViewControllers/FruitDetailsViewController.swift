@@ -30,6 +30,7 @@ class FruitDetailsViewController: UIViewController {
         let formatter = MeasurementFormatter()
         formatter.unitOptions = .naturalScale
         formatter.locale = britishLocale
+        formatter.numberFormatter.maximumFractionDigits = 2
         return formatter.string(from: kilograms)
     }
 
