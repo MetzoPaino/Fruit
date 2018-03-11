@@ -11,44 +11,78 @@ import XCTest
 
 class FruitTests: XCTestCase {
 
-    let coreDataManager = CoreDataManager()
+    var coreDataManager: CoreDataManager!
+    var validFruitDictionary: Dictionary<String, Any>!
+    var invalidFruitDictionary: Dictionary<String, Any>!
+
+    var correctType: String!
+    var correctWeight: Int!
+    var correctPrice: Int!
+
+    var incorrectType: Int!
+    var incorrectWeight: String!
+    var incorrectPrice: Double!
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        coreDataManager = CoreDataManager()
+
+        let typeKey = "type"
+        let weightKey = "weight"
+        let priceKey = "price"
+
+        correctType = "Orange"
+        correctWeight = 100
+        correctPrice = 500
+
+        incorrectType = 7575
+        incorrectWeight = "Heavy"
+        incorrectPrice = 10.56
+
+        validFruitDictionary = Dictionary()
+        validFruitDictionary[typeKey] = correctType
+        validFruitDictionary[weightKey] = correctWeight
+        validFruitDictionary[priceKey] = correctPrice
+
+        invalidFruitDictionary = Dictionary()
+        invalidFruitDictionary[typeKey] = incorrectType
+        invalidFruitDictionary[weightKey] = incorrectWeight
+        invalidFruitDictionary[priceKey] = incorrectPrice
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+
+        coreDataManager = nil
+        validFruitDictionary = nil
+        invalidFruitDictionary = nil
+
+        correctType = nil
+        correctWeight = nil
+        correctPrice = nil
+
+        incorrectType = nil
+        incorrectWeight = nil
+        incorrectPrice = nil
     }
     
     func testDictionaryToFruit() {
 
-        var dictionary = Dictionary<String, Any>()
-        dictionary["type"] = "Orange"
-        dictionary["weight"] = 100
-        dictionary["price"] = 500
-
-        let fruit = Fruit(context: coreDataManager.coreDataStack.managedContext)
+        let validFruit = Fruit(context: coreDataManager.coreDataStack.managedContext)
         do {
-            try fruit.dictionaryToFruit(dictonary: dictionary)
+            try validFruit.dictionaryToFruit(dictonary: validFruitDictionary)
         } catch {
-            XCTFail("Didn't expect the fruit exception man")
+            XCTFail("Failed to create Fruit")
         }
 
-        XCTAssert( fruit.type == "Orange")
-        XCTAssert( fruit.weight == 100)
-        XCTAssert( fruit.price == 500)
-
-        dictionary["type"] = 7575
-        dictionary["weight"] = "100"
-        dictionary["price"] = 10.56
+        XCTAssert(validFruit.type == correctType)
+        XCTAssert(validFruit.weight == correctWeight)
+        XCTAssert(validFruit.price == correctPrice)
 
         let failureFruit = Fruit(context: coreDataManager.coreDataStack.managedContext)
         var caught = false
         do {
-            try failureFruit.dictionaryToFruit(dictonary: dictionary)
+            try failureFruit.dictionaryToFruit(dictonary: invalidFruitDictionary)
         } catch {
             caught = true
         }
