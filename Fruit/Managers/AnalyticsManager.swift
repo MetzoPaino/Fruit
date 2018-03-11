@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import os.log
 
 /**
  Possible analytic events.
@@ -120,15 +119,5 @@ class AnalyticsManager {
         urlComponents.queryItems = [queryItem, queryData]
 
         return urlComponents
-    }
-
-    func logIssue(message: String) {
-
-        guard let bundleID = Bundle.main.bundleIdentifier else {
-            return
-        }
-
-        let osLog = OSLog(subsystem: bundleID, category: "Model")
-        os_log("Error:", log: osLog, type: .error, message)
     }
 }

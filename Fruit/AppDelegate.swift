@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AppManager.sharedInstance.sendAnalyticErrorEvent(exception: exception)
         }
 
-//        var e = NSException(name:NSExceptionName(rawValue: "name"), reason:"reason", userInfo:["key":"value"])
-//        e.raise()
-
         return true
     }
 
