@@ -69,7 +69,7 @@ class NetworkManager {
         return analyticsEndpoint + analyticsEvent
     }
 
-    func postAnalytic(string: String) {
+    func postAnalytic(string: String?) {
         do {
             let url = try createURL(string: string)
             dataTask = defaultSession.dataTask(with: url, completionHandler: { (data, response, error) in
@@ -95,10 +95,10 @@ class NetworkManager {
         }
     }
 
-    func createURL(string: String) throws -> URL {
+    func createURL(string: String?) throws -> URL {
 
         guard
-            let urlComponents = URLComponents(string: string),
+            let urlComponents = URLComponents(string: string!),
             let url = urlComponents.url else {
                 print("The URL failed to resolve")
                 throw DownloadManagerError.urlResolveFailure

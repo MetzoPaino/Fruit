@@ -8,16 +8,17 @@
 
 import Foundation
 
-enum AnalyticEvent: Error {
+enum AnalyticEvent {
     case download
     case displayTime
     case error
 
-    func eventString() -> String {
+    var queryItem: URLQueryItem {
+        let item = "event"
         switch self {
-        case .download: return "load"
-        case .displayTime: return "display"
-        case .error: return "error"
+        case .download: return URLQueryItem(name: item, value: "load")
+        case .displayTime: return URLQueryItem(name: item, value: "display")
+        case .error: return URLQueryItem(name: item, value: "error")
         }
     }
 }
@@ -26,24 +27,66 @@ class AnalyticsManager {
 
     private let analyticsEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/stats?"
 
-    func downloadEvent(timeTaken: TimeInterval) -> String {
-        let analyticsEvent = "event=\(AnalyticEvent.eventString(.download))&data=\(timeTaken)"
-        return analyticsEndpoint + analyticsEvent
+    func createURLComponents() -> URLComponents {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "raw.githubusercontent.com"
+        urlComponents.path = "/fmtvp/recruit-test-data/master/stats"
+        return urlComponents
     }
 
-    func displayEvent(timeTaken: TimeInterval) -> String {
-        let analyticsEvent = "event=\(AnalyticEvent.eventString(.displayTime))&data=\(timeTaken)"
-        return analyticsEndpoint + analyticsEvent
+    func downloadEvent(timeTaken: TimeInterval) -> String? {
+
+        var urlComponents = createURLComponents()
+        let queryItem = AnalyticEvent.download.queryItem
+        let queryData = URLQueryItem(name: "event", value: "\(timeTaken)")
+        urlComponents.queryItems = [queryItem, queryData]
+
+        return urlComponents.string
     }
 
-    func errorEvent(exception: NSException) -> String {
+    func displayEvent(timeTaken: TimeInterval) -> String? {
 
-        var reason = "UnknownExceptionReason"
-        if let exceptionReason = exception.reason {
-            reason = exceptionReason
+        var urlComponents = createURLComponents()
+        let queryItem = AnalyticEvent.displayTime.queryItem
+        let queryData = URLQueryItem(name: "event", value: "\(timeTaken)")
+        urlComponents.queryItems = [queryItem, queryData]
+
+        return urlComponents.string
+    }
+
+    func errorEvent(exception: NSException) -> String? {
+
+        let newLine = "\n" // addingPercentEncoding below won't parse %0A correctly
+
+        var dataString = exception.name.rawValue
+        dataString.append(newLine)
+
+        if let reason = exception.reason {
+            dataString.append(reason)
+            dataString.append(newLine)
         }
 
-        let analyticsEvent = "event=\(AnalyticEvent.eventString(.error))&data=\(reason)"
-        return analyticsEndpoint + analyticsEvent
+        let lineLimit = 3
+
+        for (index, stackSymbol) in exception.callStackSymbols.enumerated() {
+
+            // Strip out excess whitespace for more readable url
+            let components = stackSymbol.components(separatedBy: .whitespaces).filter { !$0.isEmpty }
+            let strippedString = components.joined(separator: " ")
+
+            dataString.append(strippedString + newLine)
+
+            if index >= lineLimit {
+                break
+            }
+        }
+
+        var urlComponents = createURLComponents()
+        let queryItem = AnalyticEvent.error.queryItem
+        let queryData = URLQueryItem(name: "event", value: dataString)
+        urlComponents.queryItems = [queryItem, queryData]
+
+        return urlComponents.string
     }
 }
