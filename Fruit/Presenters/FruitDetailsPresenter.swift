@@ -8,12 +8,12 @@
 
 import Foundation
 
-class FruitDetailPresenter {
+class FruitDetailsPresenter {
 
-    private var fruitDetailView : FruitDetailView?
+    private var fruitDetailsView : FruitDetailsView?
 
-    func attachView(_ view: FruitDetailView) {
-        fruitDetailView = view
+    func attachView(_ view: FruitDetailsView) {
+        fruitDetailsView = view
     }
 
     func sendDisplayTimeAnalytic(timeTaken: TimeInterval) {

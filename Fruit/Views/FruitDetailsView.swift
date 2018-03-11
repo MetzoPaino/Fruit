@@ -8,4 +8,4 @@
 
 import Foundation
 
-protocol FruitDetailView {}
+protocol FruitDetailsView {}

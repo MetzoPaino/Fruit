@@ -26,8 +26,8 @@
 		0A608948205412E800806AFC /* FruitListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608947205412E800806AFC /* FruitListPresenter.swift */; };
 		0A60894A205413AF00806AFC /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608949205413AF00806AFC /* CoreDataManagerTests.swift */; };
 		0A60894E205417E000806AFC /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60894D205417E000806AFC /* JSONHelper.swift */; };
-		0A6089562054574100806AFC /* FruitDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6089552054574100806AFC /* FruitDetailPresenter.swift */; };
-		0A608958205457A700806AFC /* FruitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608957205457A700806AFC /* FruitDetailView.swift */; };
+		0A6089562054574100806AFC /* FruitDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6089552054574100806AFC /* FruitDetailsPresenter.swift */; };
+		0A608958205457A700806AFC /* FruitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608957205457A700806AFC /* FruitDetailsView.swift */; };
 		0A60895A205464B700806AFC /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A608959205464B700806AFC /* AnalyticsManager.swift */; };
 		0A60895C205468E700806AFC /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60895B205468E700806AFC /* NetworkManagerTests.swift */; };
 		0A60895E2054910C00806AFC /* EmojiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60895D2054910C00806AFC /* EmojiHelper.swift */; };
@@ -67,8 +67,8 @@
 		0A608947205412E800806AFC /* FruitListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FruitListPresenter.swift; sourceTree = "<group>"; };
 		0A608949205413AF00806AFC /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		0A60894D205417E000806AFC /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
-		0A6089552054574100806AFC /* FruitDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailPresenter.swift; sourceTree = "<group>"; };
-		0A608957205457A700806AFC /* FruitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailView.swift; sourceTree = "<group>"; };
+		0A6089552054574100806AFC /* FruitDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailsPresenter.swift; sourceTree = "<group>"; };
+		0A608957205457A700806AFC /* FruitDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailsView.swift; sourceTree = "<group>"; };
 		0A608959205464B700806AFC /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		0A60895B205468E700806AFC /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		0A60895D2054910C00806AFC /* EmojiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiHelper.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				0A608947205412E800806AFC /* FruitListPresenter.swift */,
-				0A6089552054574100806AFC /* FruitDetailPresenter.swift */,
+				0A6089552054574100806AFC /* FruitDetailsPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 			children = (
 				0A6089432053F77500806AFC /* FruitListView.swift */,
 				0A54FE4B20506AE500312D75 /* FruitTableViewCell.swift */,
-				0A608957205457A700806AFC /* FruitDetailView.swift */,
+				0A608957205457A700806AFC /* FruitDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,14 +326,14 @@
 				0A54FE482050438F00312D75 /* FruitModel.xcdatamodeld in Sources */,
 				0A54FE4A20504A1000312D75 /* CoreDataStack.swift in Sources */,
 				0A54FE40204F1E1C00312D75 /* FruitDetailsViewController.swift in Sources */,
-				0A608958205457A700806AFC /* FruitDetailView.swift in Sources */,
+				0A608958205457A700806AFC /* FruitDetailsView.swift in Sources */,
 				0A6089442053F77500806AFC /* FruitListView.swift in Sources */,
 				0A60894E205417E000806AFC /* JSONHelper.swift in Sources */,
 				0A54FE3E204F1E0600312D75 /* FruitListTableViewController.swift in Sources */,
 				0A60895E2054910C00806AFC /* EmojiHelper.swift in Sources */,
 				0A608948205412E800806AFC /* FruitListPresenter.swift in Sources */,
 				0A54FE4420503E0D00312D75 /* CoreDataManager.swift in Sources */,
-				0A6089562054574100806AFC /* FruitDetailPresenter.swift in Sources */,
+				0A6089562054574100806AFC /* FruitDetailsPresenter.swift in Sources */,
 				0A54FE2A204F0F5700312D75 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,7 @@ class FruitDetailsViewController: UIViewController {
     //MARK: - Variables
 
     var fruit: Fruit!
-    private var presenter = FruitDetailPresenter()
+    private var presenter = FruitDetailsPresenter()
 
     private var weightString: String {
 
@@ -61,4 +61,4 @@ class FruitDetailsViewController: UIViewController {
     }
 }
 
-extension FruitDetailsViewController: FruitDetailView {}
+extension FruitDetailsViewController: FruitDetailsView {}
