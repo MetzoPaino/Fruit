@@ -16,46 +16,44 @@ enum DownloadManagerError: Error {
 
 class NetworkManager {
 
-    var defaultSession = URLSession.shared
-    var dataTask = URLSessionDataTask()
+    private var defaultSession = URLSession.shared
+    private var dataTask = URLSessionDataTask()
 
     func downloadData(completionHandler: @escaping ([[String: Any]]?, TimeInterval?, Error?) -> Void) {
 
         let dataEndpoint = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json#"
 
-        guard let url = try? createURL(string: dataEndpoint) else {
-            // NO NO NO
-            return
-        }
+        do {
+            let url = try createURL(string: dataEndpoint)
+            dataTask = defaultSession.dataTask(with: url) { data, response, error in
 
-        dataTask = defaultSession.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    completionHandler(nil, nil, error)
+                } else if
+                    let data = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
 
-            if let error = error {
-                completionHandler(nil, nil, error)
-            } else if
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 {
+                    let date = Date()
 
-                let date = Date()
+                    DispatchQueue.main.async {
 
-                DispatchQueue.main.async {
-
-                    print("\n time interval\n\n")
-//                    self.postEventLoading(string: self.createLoadingEvent(timeTaken: Date().timeIntervalSince(date)))
-
-
-                    do {
-                         let json = try parseJSON(data: data)
-                        completionHandler(json, Date().timeIntervalSince(date), nil)
-                    } catch {
-                        //Handle time taken
+                        do {
+                            let json = try parseJSON(data: data)
+                            completionHandler(json, Date().timeIntervalSince(date), nil)
+                        } catch {
+                            completionHandler(nil, Date().timeIntervalSince(date), error)
+                        }
                     }
                 }
             }
+            dataTask.resume()
+
+        } catch {
+            completionHandler(nil, nil, error)
+            return
         }
-        dataTask.resume()
-        }
+    }
 
     func createLoadingEvent(timeTaken: TimeInterval) -> String {
 
@@ -72,29 +70,29 @@ class NetworkManager {
     }
 
     func postAnalytic(string: String) {
+        do {
+            let url = try createURL(string: string)
+            dataTask = defaultSession.dataTask(with: url, completionHandler: { (data, response, error) in
 
-        guard let url = try? createURL(string: string) else {
-            // NO NO NO
+                if let error = error {
+                    print("DataTask error: " + error.localizedDescription)
+                } else if
+                    let _ = data,
+                    let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 {
+
+                    DispatchQueue.main.async {
+                        print("Analytic event sent successfully")
+                    }
+                } else {
+                    print("Analytic event failed to send successfully")
+                }
+            })
+            dataTask.resume()
+        } catch {
+//            completionHandler(nil, nil, error)
             return
         }
-
-        dataTask = defaultSession.dataTask(with: url, completionHandler: { (data, response, error) in
-
-            if let error = error {
-                print("DataTask error: " + error.localizedDescription)
-            } else if
-                let _ = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 {
-
-                DispatchQueue.main.async {
-                    print("Analytic event sent successfully")
-                }
-            } else {
-                print("Analytic event failed to send successfully")
-            }
-        })
-        dataTask.resume()
     }
 
     func createURL(string: String) throws -> URL {

@@ -36,5 +36,14 @@ class AnalyticsManager {
         return analyticsEndpoint + analyticsEvent
     }
 
-    func errorEvent() {}
+    func errorEvent(exception: NSException) -> String {
+
+        var reason = "UnknownExceptionReason"
+        if let exceptionReason = exception.reason {
+            reason = exceptionReason
+        }
+
+        let analyticsEvent = "event=\(AnalyticEvent.eventString(.error))&data=\(reason)"
+        return analyticsEndpoint + analyticsEvent
+    }
 }

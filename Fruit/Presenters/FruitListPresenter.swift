@@ -46,7 +46,6 @@ class FruitListPresenter: NSObject {
     func sendDisplayTimeAnalytic(timeTaken: TimeInterval) {
         AppManager.sharedInstance.sendAnalyticDisplayEvent(timeTaken: timeTaken)
     }
-
 }
 
 // MARK: - NSFetchedResultsControllerDelegate

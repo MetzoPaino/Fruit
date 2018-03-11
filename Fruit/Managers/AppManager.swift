@@ -65,6 +65,10 @@ class AppManager {
         networkManger.postAnalytic(string: analyticsManager.displayEvent(timeTaken: timeTaken))
     }
 
+    func sendAnalyticErrorEvent(exception: NSException) {
+        networkManger.postAnalytic(string: analyticsManager.errorEvent(exception: exception))
+    }
+
     // MARK:- Core Data
 
     func fetchedResultsController() ->  NSFetchedResultsController<Fruit> {

@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 
-
 enum FruitError: Error {
     case dictionaryCreation
 }

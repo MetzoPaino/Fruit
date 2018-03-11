@@ -12,7 +12,6 @@ import XCTest
 class NetworkManagerTests: XCTestCase {
 
     var networkManager: NetworkManager!
-
     var validURLString: String!
     var invalidURLString: String!
     

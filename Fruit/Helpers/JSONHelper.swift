@@ -14,7 +14,6 @@ func parseJSON(data: Data) throws -> [[String: Any]] {
     if
         let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any],
         let jsonArray =  jsonDictionary[topLevelKey] as? [[String: Any]] {
-
         return jsonArray
     } else {
         throw DownloadManagerError.jsonParser
