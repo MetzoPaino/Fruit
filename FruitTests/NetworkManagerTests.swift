@@ -12,28 +12,27 @@ import XCTest
 class NetworkManagerTests: XCTestCase {
 
     var networkManager: NetworkManager!
-    var validURLString: String!
-    var invalidURLString: String!
-    
+    var validURLComponents: URLComponents!
+
     override func setUp() {
         super.setUp()
 
         networkManager = NetworkManager()
-        validURLString = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data.json"
-        invalidURLString = "https://raw.githubusercontent.com/fmtvp/recruit-test-data/master/data. json"
+
+        validURLComponents = URLComponents()
+        validURLComponents.scheme = "https"
+        validURLComponents.host = "raw.githubusercontent.com"
+        validURLComponents.path = "/fmtvp/recruit-test-data/master/data.json"
     }
     
     override func tearDown() {
         super.tearDown()
 
         networkManager = nil
-        validURLString = nil
-        invalidURLString = nil
+        validURLComponents = nil
     }
 
     func testCreateURL() {
-
-        XCTAssertNoThrow(try networkManager.createURL(string: validURLString))
-        XCTAssertThrowsError(try networkManager.createURL(string: invalidURLString))
+        XCTAssertNoThrow(try networkManager.createURL(urlComponents: validURLComponents))
     }
 }
