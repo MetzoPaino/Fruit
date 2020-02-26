@@ -86,6 +86,6 @@ class FruitTests: XCTestCase {
         } catch {
             caught = true
         }
-        XCTAssertFalse(caught)
+        XCTAssert(caught)
     }
 }
